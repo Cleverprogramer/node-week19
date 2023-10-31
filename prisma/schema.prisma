@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Owner {
-  id        Int         @id @default(autoincrement())
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   email     String      @unique
   password  String
@@ -21,8 +21,8 @@ model Owner {
 }
 
 model BookStore {
-  id       Int      @id @default(autoincrement())
-  ownerId  Int
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  ownerId  String   @db.ObjectId
   name     String
   location String
   created  DateTime @default(now())
@@ -33,7 +33,7 @@ model BookStore {
 }
 
 model Author {
-  id      Int      @id @default(autoincrement())
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
   name    String
   created DateTime @default(now())
   updated DateTime @default(now())
@@ -41,9 +41,9 @@ model Author {
 }
 
 model Book {
-  id          Int      @id @default(autoincrement())
-  authorId    Int
-  bookstoreId Int
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  authorId    String   @db.ObjectId
+  bookstoreId String   @db.ObjectId
   title       String
   price       Float
   image       String
